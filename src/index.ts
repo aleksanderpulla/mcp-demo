@@ -5,7 +5,7 @@ import { makeCDataSyncRequest } from "./api.js";
 import { updateSyncConfig } from "./config.js";
 
 const server = new McpServer({
-  name: "cdatasync",
+  name: "cdata_sync",
   version: "1.0.0",
   capabilities: {
     resources: {},
@@ -16,7 +16,7 @@ const server = new McpServer({
 // Configure tool
 server.tool(
   "configure-sync",
-  "Configure the CData Sync server IP and auth token",
+  "Configure CData Sync server IP and auth token",
 {
     ipAddress: z.string().describe("IPv4 address of the CData Sync server"),
     authToken: z.string().describe("Authentication token for the Sync API"),
@@ -33,7 +33,7 @@ server.tool(
 // Create connection tool
 server.tool(
   "create-connection",
-  "Create a connection to a data source",
+  "Create a connection to a data source in CData Sync",
   {
     connName: z.string().describe("The name of the connection"),
     providerName: z.string().describe("The provider name for the data source"),
