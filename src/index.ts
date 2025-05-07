@@ -11,6 +11,7 @@ import { listConnectionTableColumnsTool } from "./tools/connectionManagement/lis
 import { listJobsTool } from "./tools/jobManagement/listJobs.js";
 import { executeJobTool } from "./tools/jobManagement/executeJob.js";
 import { deleteJobTool } from "./tools/jobManagement/deleteJob.js";
+import { listJobTasksTool } from "./tools/jobManagement/listJobTasks.js";
 
 const server = new McpServer({
   name: "cdata_sync",
@@ -90,6 +91,14 @@ server.tool(
   deleteJobTool.inputSchema.shape,
   // @ts-ignore
   deleteJobTool.handler
+);
+
+server.tool(
+  listJobTasksTool.name,
+  listJobTasksTool.description,
+  listJobTasksTool.inputSchema.shape,
+  // @ts-ignore
+  listJobTasksTool.handler
 );
 
 async function main() {

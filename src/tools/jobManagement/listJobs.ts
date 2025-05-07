@@ -10,7 +10,7 @@ export const listJobsTool = {
         {
           type: "text",
           text: jobs
-            ? `Connections: ${JSON.stringify(jobs)}`
+            ? `Jobs: ${JSON.stringify(jobs)}`
             : "There are no Jobs in your CData Sync instance.",
         },
       ],
