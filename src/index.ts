@@ -7,6 +7,8 @@ import { createConnectionTool } from "./tools/connectionManagement/createConnect
 import { deleteConnectionTool } from "./tools/connectionManagement/deleteConnection.js";
 import { listConnectionsTool } from "./tools/connectionManagement/listConnections.js";
 import { listConnectionTablesTool } from "./tools/connectionManagement/listConnectionTables.js";
+import { listConnectionTableColumnsTool } from "./tools/connectionManagement/listConnectionTableColumns.js";
+import { listJobsTool } from "./tools/jobManagement/listJobs.js";
 
 const server = new McpServer({
   name: "cdata_sync",
@@ -55,6 +57,21 @@ server.tool(
   listConnectionTablesTool.inputSchema.shape,
   // @ts-ignore
   listConnectionTablesTool.handler
+);
+
+server.tool(
+  listConnectionTableColumnsTool.name,
+  listConnectionTableColumnsTool.description,
+  listConnectionTableColumnsTool.inputSchema.shape,
+  // @ts-ignore
+  listConnectionTableColumnsTool.handler
+);
+
+// @ts-ignore
+server.tool(
+  listJobsTool.name,
+  listJobsTool.description,
+  listJobsTool.handler
 );
 
 async function main() {
