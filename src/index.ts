@@ -12,6 +12,7 @@ import { listJobsTool } from "./tools/jobManagement/listJobs.js";
 import { executeJobTool } from "./tools/jobManagement/executeJob.js";
 import { deleteJobTool } from "./tools/jobManagement/deleteJob.js";
 import { listJobTasksTool } from "./tools/jobManagement/listJobTasks.js";
+import { createUserTool } from "./tools/userManagement/createUser.js";
 
 const server = new McpServer({
   name: "cdata_sync",
@@ -99,6 +100,14 @@ server.tool(
   listJobTasksTool.inputSchema.shape,
   // @ts-ignore
   listJobTasksTool.handler
+);
+
+server.tool(
+  createUserTool.name,
+  createUserTool.description,
+  createUserTool.inputSchema.shape,
+  // @ts-ignore
+  createUserTool.handler
 );
 
 async function main() {
