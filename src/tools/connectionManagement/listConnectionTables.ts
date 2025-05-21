@@ -23,7 +23,8 @@ export const listConnectionTablesTool = {
       content: [
         {
           type: "text",
-          text: result ? "Tables retrieved successfully." : "Failed to retrieve tables.",
+          //@ts-ignore
+          text: result ? `Tables retrieved successfully. Below is the list of tables for ${connName}: ${JSON.stringify(result.value)}` : "Failed to retrieve tables.",
         },
       ],
     };

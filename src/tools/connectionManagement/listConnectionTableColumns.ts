@@ -23,7 +23,8 @@ export const listConnectionTableColumnsTool = {
       content: [
         {
           type: "text",
-          text: result ? "Columns retrieved successfully." : "Failed to retrieve columns.",
+          //@ts-ignore
+          text: result ? `Columns retrieved successfully. Below is the list of columns for the ${table} table: ${JSON.stringify(result.value)}` : "Failed to retrieve columns.",
         },
       ],
     };
