@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { makeCDataSyncRequest } from "../../api.js";
-import { writeLog } from "../../utils/logger.js";
 
 export const createConnectionTool = {
   name: "create-connection",
@@ -16,26 +15,26 @@ export const createConnectionTool = {
       ProviderName: ProviderName,
       ConnectionString: ConnectionString,
     };
-
-    // const existing = await makeCDataSyncRequest(`/connections(${Name})`);
-    // if (existing) {
-    //   return { content: [{ type: "text", text: "Connection already exists." }] };
-    // }
     
-    const result = await makeCDataSyncRequest(`/connections`, {
+    try {
+      const existing = await makeCDataSyncRequest(`/connections(${Name})`, {method: "GET",});
+      if (existing) {
+        return { content: [{ type: "text", text: `The connection name ${Name} already exists. Please choose a different name.` }] };
+      }
+    } 
+    catch (error) {
+      const result = await makeCDataSyncRequest(`/connections`, {
       method: "POST",
       body: JSON.stringify(payload),
     });
-
-    writeLog("create-connection.log", result)
-
-    return {
-      content: [
-        {
+      return {
+        content: [
+          {
           type: "text",
           text: result ? "Connection created successfully." : "Failed to create connection.",
-        },
-      ],
-    };
+          },
+        ],
+      };
+    }
   },
 };
