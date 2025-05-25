@@ -27,8 +27,8 @@ export async function makeCDataSyncRequest<T>(
 
 // Add this agent to bypass self-signed cert errors (ONLY for dev)
 const agent = isHttps
-    ? new https.Agent({ rejectUnauthorized: false }) // or with custom CA
-    : new http.Agent(); // support http too
+    ? new https.Agent({ rejectUnauthorized: false }) 
+    : new http.Agent(); 
 
     const response = await fetch(url, { ...options, headers, agent: agent, signal: controller.signal } as any);
     if (!response.ok) {

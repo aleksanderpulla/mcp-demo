@@ -10,11 +10,23 @@ export const executeJobTool = {
   handler: async ({ jobName }: { jobName: string }) => {
     const payload = {
         JobName: jobName,
-        WaitForResults: false
+        WaitForResults: true,
+        Timeout: 30
       };
-    const jobs = await makeCDataSyncRequest(`/executeJob`, {
+    const jobs: any = await makeCDataSyncRequest(`/executeJob`, {
         method: "POST",
         body: JSON.stringify(payload),
     });
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: jobs ? `Job "${jobName}" executed successfully. Details:\n` + JSON.stringify(jobs.value) + "\n" : "Failed to execute job.",
+        },
+      ],
+    };
+
+
   },
 };

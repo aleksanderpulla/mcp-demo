@@ -1,4 +1,3 @@
-// src/tools/connection/create.ts
 import { z } from "zod";
 import { makeCDataSyncRequest } from "../../api.js";
 

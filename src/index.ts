@@ -15,6 +15,7 @@ import { listJobTasksTool } from "./tools/jobManagement/listJobTasks.js";
 import { createUserTool } from "./tools/userManagement/createUser.js";
 import { listUsersTool } from "./tools/userManagement/listUsers.js";
 import { modifyUserTool } from "./tools/userManagement/modifyUser.js";
+import { createJobTool } from "./tools/jobManagement/createJob.js";
 
 const server = new McpServer({
   name: "cdata_sync",
@@ -127,10 +128,17 @@ server.tool(
   modifyUserTool.handler
 );
 
+server.tool(
+  createJobTool.name,
+  createJobTool.description,
+  createJobTool.inputSchema.shape,
+  // @ts-ignore
+  createJobTool.handler
+);
+
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  // console.error("CData Sync MCP Server running on stdio");
 }
 
 main().catch((err) => {
