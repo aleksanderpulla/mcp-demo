@@ -19,7 +19,7 @@ export const createConnectionTool = {
     try {
       const existing = await makeCDataSyncRequest(`/connections(${Name})`, {method: "GET",});
       if (existing) {
-        return { content: [{ type: "text", text: `The connection name ${Name} already exists. Please choose a different name.` }] };
+        return { content: [{ type: "text", text: `The connection name [${Name}] already exists. Please choose a different name.` }] };
       }
     } 
     catch (error) {
