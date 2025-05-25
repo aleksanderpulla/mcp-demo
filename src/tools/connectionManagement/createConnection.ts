@@ -5,18 +5,18 @@ export const createConnectionTool = {
   name: "create-connection",
   description: "Create a connection to a data source in CData Sync",
   inputSchema: z.object({
-    connName: z.string().describe("The name of the connection"),
-    providerName: z.string().describe("The provider name for the data source"),
-    connectionString: z.string().describe("The connection string for the data source"),
+    Name: z.string().describe("The name of the connection"),
+    ProviderName: z.string().describe("The provider name for the data source"),
+    ConnectionString: z.string().describe("The connection string for the data source"),
   }),
-  handler: async ({ connName, providerName, connectionString }: { connName: string; providerName: string; connectionString: string }) => {
+  handler: async ({ Name, ProviderName, ConnectionString }: { Name: string; ProviderName: string; ConnectionString: string }) => {
     const payload = {
-      Name: connName,
-      ProviderName: providerName,
-      ConnectionString: connectionString,
+      Name: Name,
+      ProviderName: ProviderName,
+      ConnectionString: ConnectionString,
     };
 
-    const existing = await makeCDataSyncRequest(`/connections(${connName})`);
+    const existing = await makeCDataSyncRequest(`/connections(${Name})`);
     if (existing) {
       return { content: [{ type: "text", text: "Connection already exists." }] };
     }
