@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { makeCDataSyncRequest } from "../../api.js";
+import { writeLog } from "../../utils/logger.js";
 
 export const createConnectionTool = {
   name: "create-connection",
@@ -16,15 +17,17 @@ export const createConnectionTool = {
       ConnectionString: ConnectionString,
     };
 
-    const existing = await makeCDataSyncRequest(`/connections(${Name})`);
-    if (existing) {
-      return { content: [{ type: "text", text: "Connection already exists." }] };
-    }
-
+    // const existing = await makeCDataSyncRequest(`/connections(${Name})`);
+    // if (existing) {
+    //   return { content: [{ type: "text", text: "Connection already exists." }] };
+    // }
+    
     const result = await makeCDataSyncRequest(`/connections`, {
       method: "POST",
       body: JSON.stringify(payload),
     });
+
+    writeLog("create-connection.log", result)
 
     return {
       content: [
