@@ -2,5 +2,4 @@ node_modules/
 package-lock.json
 build/
 Claude-Prompts.txt
-SyncLocalCredentials.txt
-SyncPreSalesCredentials.txt
+inputs/*
