@@ -12,7 +12,7 @@ export const createJobTool = {
   name: "create-job",
   description: `
     1) Ask the user: “What would you like to name this job?”
-    2) **Invoke** the “list-connections” tool to fetch all available connections.
+    2) Invoke the “list-connections” tool to fetch all available connections.
     3) Render the returned array as a markdown table (columns: id, name, type, etc.).
     4) Ask the user: “Which connection should be the SOURCE? (pick one from the table)”
     5) Ask the user: “Which connection should be the DESTINATION? (pick one from the table)”
