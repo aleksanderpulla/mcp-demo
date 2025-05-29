@@ -4,8 +4,6 @@ import http from "http";
 import https from "https";
 import fetch from "node-fetch";
 
-
-
 export async function makeCDataSyncRequest<T>(
   path: string,
   options: RequestInit = {}
